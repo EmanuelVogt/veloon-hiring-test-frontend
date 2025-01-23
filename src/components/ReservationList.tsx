@@ -10,7 +10,7 @@ export const ReservationList = () => {
 
   const handleCancel = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/booking/${id}`, {
+      const response = await fetch(`http://localhost:3000/bookings/${id}`, {
         method: 'DELETE',
       });
 
