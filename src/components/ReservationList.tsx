@@ -6,13 +6,30 @@ import { useReservations } from "@/contexts/ReservationContext";
 
 export const ReservationList = () => {
   const { toast } = useToast();
-  const { reservations } = useReservations();
+  const { reservations, removeReservation } = useReservations();
 
-  const handleCancel = (id: string) => {
-    toast({
-      title: "Reserva Cancelada",
-      description: "Sua reserva foi cancelada com sucesso.",
-    });
+  const handleCancel = async (id: string) => {
+    try {
+      const response = await fetch(`http://localhost:3000/booking/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to cancel reservation');
+      }
+
+      removeReservation(id);
+      toast({
+        title: "Reserva Cancelada",
+        description: "Sua reserva foi cancelada com sucesso.",
+      });
+    } catch (error) {
+      toast({
+        title: "Erro ao Cancelar",
+        description: "Não foi possível cancelar sua reserva. Tente novamente.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

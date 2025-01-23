@@ -6,6 +6,7 @@ interface ReservationContextType {
   reservations: Reservation[];
   addReservation: (room: Room, startDate: Date, endDate: Date) => Promise<void>;
   isReserved: (roomId: string) => boolean;
+  removeReservation: (id: string) => void;
 }
 
 const ReservationContext = createContext<ReservationContextType | undefined>(undefined);
@@ -31,9 +32,9 @@ export const ReservationProvider = ({ children }: { children: React.ReactNode })
       if (!response.ok) {
         throw new Error('Failed to make reservation');
       }
-
+      const data = await response.json()
       const newReservation: Reservation = {
-        id: Date.now().toString(),
+        id: data.id,
         room,
         startDate,
         endDate,
@@ -53,12 +54,16 @@ export const ReservationProvider = ({ children }: { children: React.ReactNode })
     }
   };
 
+  const removeReservation = (id: string) => {
+    setReservations(prev => prev.filter(reservation => reservation.id !== id));
+  };
+
   const isReserved = (roomId: string) => {
     return reservations.some(reservation => reservation.room.id === roomId);
   };
 
   return (
-    <ReservationContext.Provider value={{ reservations, addReservation, isReserved }}>
+    <ReservationContext.Provider value={{ reservations, addReservation, isReserved, removeReservation }}>
       {children}
     </ReservationContext.Provider>
   );
