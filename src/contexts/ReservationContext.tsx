@@ -37,7 +37,6 @@ export const ReservationProvider = ({ children }: { children: React.ReactNode })
         room,
         startDate,
         endDate,
-        status: 'Confirmed',
       };
 
       setReservations(prev => [...prev, newReservation]);

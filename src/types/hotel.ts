@@ -21,7 +21,6 @@ export interface Reservation {
   room: Room;
   startDate: Date;
   endDate: Date;
-  status: "Confirmed" | "Pending" | "Cancelled";
 }
 
 export interface Reviews {

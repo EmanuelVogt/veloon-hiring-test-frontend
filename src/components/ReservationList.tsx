@@ -42,12 +42,6 @@ export const ReservationList = () => {
                 </div>
               </div>
               <div className="text-right">
-                <span className="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4" style={{
-                  backgroundColor: reservation.status === "Confirmed" ? "#DEF7EC" : "#FDF6B2",
-                  color: reservation.status === "Confirmed" ? "#03543F" : "#723B13"
-                }}>
-                  {reservation.status === "Confirmed" ? "Confirmada" : "Pendente"}
-                </span>
                 <Button
                   variant="destructive"
                   onClick={() => handleCancel(reservation.id)}
