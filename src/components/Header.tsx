@@ -31,9 +31,6 @@ export const Header = () => {
           >
             Minhas Reservas
           </Button>
-          <Button className="bg-gold hover:bg-navy text-white dark:bg-navy dark:hover:bg-gold dark:text-white">
-            Entrar
-          </Button>
         </nav>
       </div>
     </header>

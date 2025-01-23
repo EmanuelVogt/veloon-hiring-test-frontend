@@ -12,6 +12,7 @@ interface RoomCardProps {
 }
 
 export const RoomCard = ({ room }: RoomCardProps) => {
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const { isReserved } = useReservations();
   const reserved = isReserved(room.id);
@@ -44,7 +45,7 @@ export const RoomCard = ({ room }: RoomCardProps) => {
           </CardContent>
         </Link>
         <CardFooter className="p-4 pt-0">
-          <Button 
+          <Button
             className={`w-full ${
               reserved
                 ? 'bg-gray-400 hover:bg-gray-400 cursor-not-allowed dark:bg-gray-600 dark:hover:bg-gray-600'

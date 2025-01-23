@@ -31,6 +31,13 @@ export const ReservationDialog = ({ room, open, onOpenChange }: ReservationDialo
     }
   };
 
+  const disabledDays = [
+    ...room.availability
+      .filter(availability => !availability.isAvailable)
+      .map(availability => availability.date),
+    { before: new Date() }
+  ];
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px] p-0 overflow-hidden rounded-lg">
@@ -50,7 +57,7 @@ export const ReservationDialog = ({ room, open, onOpenChange }: ReservationDialo
                 selected={date}
                 onSelect={setDate}
                 locale={ptBR}
-                disabled={(date) => date < new Date()}
+                disabled={disabledDays}
                 numberOfMonths={1}
                 className="rounded-xl border shadow-lg bg-white dark:bg-navy/50 dark:border-gray-700 w-full"
                 classNames={{

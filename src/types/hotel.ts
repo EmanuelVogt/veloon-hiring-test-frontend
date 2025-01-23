@@ -8,6 +8,7 @@ export interface Room {
   imageUrl: string;
   images?: string[];
   availability: Availability[];
+  reviews: Reviews[]
 }
 
 export interface Availability {
@@ -21,4 +22,11 @@ export interface Reservation {
   startDate: Date;
   endDate: Date;
   status: "Confirmed" | "Pending" | "Cancelled";
+}
+
+export interface Reviews {
+  user: string
+  pictureUrl: string
+  comment: string
+  date: Date
 }

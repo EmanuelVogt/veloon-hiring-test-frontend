@@ -16,7 +16,7 @@ export const ReservationProvider = ({ children }: { children: React.ReactNode })
 
   const addReservation = async (room: Room, startDate: Date, endDate: Date) => {
     try {
-      const response = await fetch('http://localhost:3333/reservations', {
+      const response = await fetch('http://localhost:3000/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
